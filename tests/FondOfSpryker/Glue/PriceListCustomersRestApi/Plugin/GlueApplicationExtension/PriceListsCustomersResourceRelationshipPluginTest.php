@@ -64,8 +64,30 @@ class PriceListsCustomersResourceRelationshipPluginTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->priceListsCustomersResourceRelationshipPlugin = new PriceListsCustomersResourceRelationshipPlugin();
-        $this->priceListsCustomersResourceRelationshipPlugin->setFactory($this->priceListCustomersRestApiFactoryMock);
+        $this->priceListsCustomersResourceRelationshipPlugin = new class (
+            $this->priceListCustomersRestApiFactoryMock
+        ) extends PriceListsCustomersResourceRelationshipPlugin {
+            /**
+             * @var \FondOfSpryker\Glue\PriceListCustomersRestApi\PriceListCustomersRestApiFactory
+             */
+            protected $priceListCustomersRestApiFactory;
+
+            /**
+             * @param \FondOfSpryker\Glue\PriceListCustomersRestApi\PriceListCustomersRestApiFactory $priceListCustomersRestApiFactory
+             */
+            public function __construct(PriceListCustomersRestApiFactory $priceListCustomersRestApiFactory)
+            {
+                $this->priceListCustomersRestApiFactory = $priceListCustomersRestApiFactory;
+            }
+
+            /**
+             * @return \FondOfSpryker\Glue\PriceListCustomersRestApi\PriceListCustomersRestApiFactory
+             */
+            public function getFactory(): PriceListCustomersRestApiFactory
+            {
+                return $this->priceListCustomersRestApiFactory;
+            }
+        };
     }
 
     /**
