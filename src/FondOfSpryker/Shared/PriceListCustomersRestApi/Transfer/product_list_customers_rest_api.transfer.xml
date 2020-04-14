@@ -9,4 +9,12 @@
     <transfer name="RestPriceListAttributes">
         <property name="name" type="string" />
     </transfer>
+
+    <transfer name="Customer">
+        <property name="priceListCollection" type="PriceListCollection"/>
+    </transfer>
+
+    <transfer name="PriceListCollection">
+        <property name="priceLists" type="PriceList[]" singular="priceList" />
+    </transfer>
 </transfers>
