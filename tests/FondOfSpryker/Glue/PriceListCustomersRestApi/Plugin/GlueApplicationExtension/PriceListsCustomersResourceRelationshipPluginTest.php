@@ -8,6 +8,7 @@ use FondOfSpryker\Glue\PriceListCustomersRestApi\PriceListCustomersRestApiFactor
 use FondOfSpryker\Glue\PriceListCustomersRestApi\Processor\Expander\PriceListsCustomersResourceRelationshipExpanderInterface;
 use Spryker\Glue\GlueApplication\Rest\JsonApi\RestResourceInterface;
 use Spryker\Glue\GlueApplication\Rest\Request\Data\RestRequestInterface;
+use Spryker\Glue\Kernel\AbstractFactory;
 
 class PriceListsCustomersResourceRelationshipPluginTest extends Unit
 {
@@ -81,9 +82,9 @@ class PriceListsCustomersResourceRelationshipPluginTest extends Unit
             }
 
             /**
-             * @return \FondOfSpryker\Glue\PriceListCustomersRestApi\PriceListCustomersRestApiFactory
+             * @return \Spryker\Glue\Kernel\AbstractFactory
              */
-            public function getFactory(): PriceListCustomersRestApiFactory
+            protected function getFactory(): AbstractFactory
             {
                 return $this->priceListCustomersRestApiFactory;
             }
